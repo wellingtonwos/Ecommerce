@@ -5,7 +5,6 @@ import com.ecommerce.library.model.Admin;
 import com.ecommerce.library.repository.AdminRepository;
 import com.ecommerce.library.repository.RoleRepository;
 import com.ecommerce.library.service.AdminService;
-import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Arrays;
@@ -13,11 +12,14 @@ import java.util.Arrays;
 @Service
 public class AdminServiceImpl implements AdminService {
 
-    @Autowired
-    private AdminRepository adminRepository;
+    private final AdminRepository adminRepository;
 
-    @Autowired
-    private RoleRepository roleRepository;
+    private final RoleRepository roleRepository;
+
+    public AdminServiceImpl(AdminRepository adminRepository, RoleRepository roleRepository) {
+        this.adminRepository = adminRepository;
+        this.roleRepository = roleRepository;
+    }
 
     @Override
     public Admin findAdminByUsername(String username) {
